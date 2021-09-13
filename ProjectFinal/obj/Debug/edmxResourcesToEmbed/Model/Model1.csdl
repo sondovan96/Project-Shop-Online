@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLShopQAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="APP_ROLE">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="modified_date" Type="DateTime" Precision="3" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="role_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="USERS" Relationship="Self.FK_USER_APP_ROLE" FromRole="APP_ROLE" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_color" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="id_customer" />
+    </Key>
+    <Property Name="id_customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="modified_date" Type="DateTime" Precision="3" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="profile_pic_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ORDERS" Relationship="Self.FK_ID_ORDER_CUSTOMER" FromRole="CUSTOMERS" ToRole="ORDERS" />
+  </EntityType>
+  <EntityType Name="MENU_PRODUCT">
+    <Key>
+      <PropertyRef Name="id_menu_product" />
+    </Key>
+    <Property Name="id_menu_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="modified_date" Type="DateTime" Precision="3" />
+    <Property Name="image_product" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="type_product" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PRODUCTs" Relationship="Self.FK_ID_MENU_PRODUCT" FromRole="MENU_PRODUCT" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="ORDER_DETAIL">
+    <Key>
+      <PropertyRef Name="id_order_detail" />
+    </Key>
+    <Property Name="id_order_detail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="modified_date" Type="DateTime" Precision="3" />
+    <Property Name="id_product" Type="Int32" Nullable="false" />
+    <Property Name="id_order" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="unit_price" Type="Int64" />
+    <NavigationProperty Name="ORDER" Relationship="Self.FK_ID_ORDER_ORDERS_DETAIL" FromRole="ORDER_DETAIL" ToRole="ORDERS" />
+    <NavigationProperty Name="PRODUCT" Relationship="Self.FK_ID_PRODUCT_ORDER_DETAIL" FromRole="ORDER_DETAIL" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="ORDER">
+    <Key>
+      <PropertyRef Name="id_order" />
+    </Key>
+    <Property Name="id_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="modified_date" Type="DateTime" Precision="3" />
+    <Property Name="status_order" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="total_price" Type="Int64" />
+    <Property Name="delivery_time" Type="DateTime" Precision="3" />
+    <Property Name="total_product" Type="Int32" />
+    <Property Name="id_customer" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_ID_ORDER_CUSTOMER" FromRole="ORDERS" ToRole="CUSTOMERS" />
+    <NavigationProperty Name="ORDER_DETAIL" Relationship="Self.FK_ID_ORDER_ORDERS_DETAIL" FromRole="ORDERS" ToRole="ORDER_DETAIL" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="id_product" />
+    </Key>
+    <Property Name="id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="modified_date" Type="DateTime" Precision="3" />
+    <Property Name="image_product" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Int64" />
+    <Property Name="size" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="color" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="id_promotion" Type="Int32" Nullable="false" />
+    <Property Name="id_menu_product" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MENU_PRODUCT" Relationship="Self.FK_ID_MENU_PRODUCT" FromRole="PRODUCT" ToRole="MENU_PRODUCT" />
+    <NavigationProperty Name="ORDER_DETAIL" Relationship="Self.FK_ID_PRODUCT_ORDER_DETAIL" FromRole="PRODUCT" ToRole="ORDER_DETAIL" />
+    <NavigationProperty Name="PROMOTION" Relationship="Self.FK_ID_PROMOTION_PRODUCT" FromRole="PRODUCT" ToRole="PROMOTION" />
+  </EntityType>
+  <EntityType Name="PROMOTION">
+    <Key>
+      <PropertyRef Name="id_promotion" />
+    </Key>
+    <Property Name="id_promotion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="modified_date" Type="DateTime" Precision="3" />
+    <Property Name="available_from" Type="DateTime" Precision="3" />
+    <Property Name="available_to" Type="DateTime" Precision="3" />
+    <Property Name="image_promotion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="percent_down" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PRODUCTs" Relationship="Self.FK_ID_PROMOTION_PRODUCT" FromRole="PROMOTION" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_size" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="STATUS_ORDER">
+    <Key>
+      <PropertyRef Name="id_status" />
+    </Key>
+    <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="modified_date" Type="DateTime" Precision="3" />
+    <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="id_role" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+    <Property Name="image_user" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="APP_ROLE" Relationship="Self.FK_USER_APP_ROLE" FromRole="USERS" ToRole="APP_ROLE" />
+  </EntityType>
+  <EntityType Name="ORDER_LIST">
+    <Key>
+      <PropertyRef Name="id_order" />
+      <PropertyRef Name="Ten_KH" />
+    </Key>
+    <Property Name="id_order" Type="Int32" Nullable="false" />
+    <Property Name="Ten_KH" Type="String" MaxLength="511" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="total_price" Type="Int64" />
+    <Property Name="delivery_time" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_USER_APP_ROLE">
+    <End Role="APP_ROLE" Type="Self.APP_ROLE" Multiplicity="1" />
+    <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="APP_ROLE">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_ORDER_CUSTOMER">
+    <End Role="CUSTOMERS" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="ORDERS" Type="Self.ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMERS">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="ORDERS">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_MENU_PRODUCT">
+    <End Role="MENU_PRODUCT" Type="Self.MENU_PRODUCT" Multiplicity="1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU_PRODUCT">
+        <PropertyRef Name="id_menu_product" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="id_menu_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_ORDER_ORDERS_DETAIL">
+    <End Role="ORDERS" Type="Self.ORDER" Multiplicity="1" />
+    <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDERS">
+        <PropertyRef Name="id_order" />
+      </Principal>
+      <Dependent Role="ORDER_DETAIL">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_PRODUCT_ORDER_DETAIL">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="ORDER_DETAIL">
+        <PropertyRef Name="id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_PROMOTION_PRODUCT">
+    <End Role="PROMOTION" Type="Self.PROMOTION" Multiplicity="1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROMOTION">
+        <PropertyRef Name="id_promotion" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="id_promotion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLShopQAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="APP_ROLE" EntityType="Self.APP_ROLE" />
+    <EntitySet Name="Colors" EntityType="Self.Color" />
+    <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMER" />
+    <EntitySet Name="MENU_PRODUCT" EntityType="Self.MENU_PRODUCT" />
+    <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" />
+    <EntitySet Name="ORDERS" EntityType="Self.ORDER" />
+    <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
+    <EntitySet Name="PROMOTIONs" EntityType="Self.PROMOTION" />
+    <EntitySet Name="Sizes" EntityType="Self.Size" />
+    <EntitySet Name="STATUS_ORDER" EntityType="Self.STATUS_ORDER" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <EntitySet Name="ORDER_LIST" EntityType="Self.ORDER_LIST" />
+    <AssociationSet Name="FK_USER_APP_ROLE" Association="Self.FK_USER_APP_ROLE">
+      <End Role="APP_ROLE" EntitySet="APP_ROLE" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_ORDER_CUSTOMER" Association="Self.FK_ID_ORDER_CUSTOMER">
+      <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+      <End Role="ORDERS" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_MENU_PRODUCT" Association="Self.FK_ID_MENU_PRODUCT">
+      <End Role="MENU_PRODUCT" EntitySet="MENU_PRODUCT" />
+      <End Role="PRODUCT" EntitySet="PRODUCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_ORDER_ORDERS_DETAIL" Association="Self.FK_ID_ORDER_ORDERS_DETAIL">
+      <End Role="ORDERS" EntitySet="ORDERS" />
+      <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PRODUCT_ORDER_DETAIL" Association="Self.FK_ID_PRODUCT_ORDER_DETAIL">
+      <End Role="PRODUCT" EntitySet="PRODUCTs" />
+      <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PROMOTION_PRODUCT" Association="Self.FK_ID_PROMOTION_PRODUCT">
+      <End Role="PROMOTION" EntitySet="PROMOTIONs" />
+      <End Role="PRODUCT" EntitySet="PRODUCTs" />
+    </AssociationSet>
+    <FunctionImport Name="SP_DonDaGiao" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="SP_ThongKe_SL" ReturnType="Collection(QLShopQAModel.SP_ThongKe_SL_Result)" />
+    <FunctionImport Name="TK_SPTHEO_CATEGORY" ReturnType="Collection(QLShopQAModel.TK_SPTHEO_CATEGORY_Result)" />
+    <FunctionImport Name="TK_SPTHEO_CATEGORY1" ReturnType="Collection(QLShopQAModel.TK_SPTHEO_CATEGORY1_Result)" />
+    <FunctionImport Name="sp_report_info_customer" ReturnType="Collection(QLShopQAModel.sp_report_info_customer_Result)">
+      <Parameter Name="id_order" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_report_day" ReturnType="Collection(QLShopQAModel.sp_report_day_Result)">
+      <Parameter Name="day" Mode="In" Type="Int32" />
+      <Parameter Name="month" Mode="In" Type="Int32" />
+      <Parameter Name="year" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_ThongKe_SL_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="TOTAL_QUANTITY_OF_PRODUCT" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="TK_SPTHEO_CATEGORY_Result">
+    <Property Type="String" Name="type_product" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="soluong" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="TK_SPTHEO_CATEGORY1_Result">
+    <Property Type="String" Name="type_product" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="soluong" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_report_info_customer_Result">
+    <Property Type="Int32" Name="id_order" Nullable="false" />
+    <Property Type="DateTime" Name="created_date" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="delivery_time" Nullable="true" Precision="23" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="phone" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="sp_report_day_Result">
+    <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="modified_date" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="total_product" Nullable="true" />
+    <Property Type="Int64" Name="total_price" Nullable="true" />
+  </ComplexType>
+</Schema>

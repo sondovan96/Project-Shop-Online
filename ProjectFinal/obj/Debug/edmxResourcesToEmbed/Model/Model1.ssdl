@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLShopQAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="APP_ROLE">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="modified_date" Type="datetime" />
+    <Property Name="description" Type="nvarchar" MaxLength="255" />
+    <Property Name="role_name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_color" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CUSTOMERS">
+    <Key>
+      <PropertyRef Name="id_customer" />
+    </Key>
+    <Property Name="id_customer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="modified_date" Type="datetime" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="gender" Type="nvarchar" MaxLength="255" />
+    <Property Name="profile_pic_url" Type="varchar" MaxLength="255" />
+    <Property Name="address" Type="nvarchar" MaxLength="255" />
+    <Property Name="email" Type="varchar" MaxLength="255" />
+    <Property Name="phone" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="MENU_PRODUCT">
+    <Key>
+      <PropertyRef Name="id_menu_product" />
+    </Key>
+    <Property Name="id_menu_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="modified_date" Type="datetime" />
+    <Property Name="image_product" Type="varchar" MaxLength="255" />
+    <Property Name="type_product" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ORDER_DETAIL">
+    <Key>
+      <PropertyRef Name="id_order_detail" />
+    </Key>
+    <Property Name="id_order_detail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="modified_date" Type="datetime" />
+    <Property Name="id_product" Type="int" Nullable="false" />
+    <Property Name="id_order" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="unit_price" Type="bigint" />
+  </EntityType>
+  <EntityType Name="ORDERS">
+    <Key>
+      <PropertyRef Name="id_order" />
+    </Key>
+    <Property Name="id_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="modified_date" Type="datetime" />
+    <Property Name="status_order" Type="varchar" MaxLength="255" />
+    <Property Name="total_price" Type="bigint" />
+    <Property Name="delivery_time" Type="datetime" />
+    <Property Name="total_product" Type="int" />
+    <Property Name="id_customer" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="id_product" />
+    </Key>
+    <Property Name="id_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="modified_date" Type="datetime" />
+    <Property Name="image_product" Type="varchar" MaxLength="255" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="price" Type="bigint" />
+    <Property Name="size" Type="varchar" MaxLength="255" />
+    <Property Name="color" Type="varchar" MaxLength="255" />
+    <Property Name="id_promotion" Type="int" Nullable="false" />
+    <Property Name="id_menu_product" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROMOTION">
+    <Key>
+      <PropertyRef Name="id_promotion" />
+    </Key>
+    <Property Name="id_promotion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="modified_date" Type="datetime" />
+    <Property Name="available_from" Type="datetime" />
+    <Property Name="available_to" Type="datetime" />
+    <Property Name="image_promotion" Type="varchar" MaxLength="255" />
+    <Property Name="percent_down" Type="int" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Size">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_size" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="STATUS_ORDER">
+    <Key>
+      <PropertyRef Name="id_status" />
+    </Key>
+    <Property Name="id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name_status" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="modified_date" Type="datetime" />
+    <Property Name="user_name" Type="varchar" MaxLength="255" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="id_role" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="255" />
+    <Property Name="image_user" Type="nchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QLShopQA.dbo.ORDER_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ORDER_LIST">
+    <Key>
+      <PropertyRef Name="id_order" />
+      <PropertyRef Name="Ten_KH" />
+    </Key>
+    <Property Name="id_order" Type="int" Nullable="false" />
+    <Property Name="Ten_KH" Type="nvarchar" MaxLength="511" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" />
+    <Property Name="total_price" Type="bigint" />
+    <Property Name="delivery_time" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_ID_MENU_PRODUCT">
+    <End Role="MENU_PRODUCT" Type="Self.MENU_PRODUCT" Multiplicity="1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU_PRODUCT">
+        <PropertyRef Name="id_menu_product" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="id_menu_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_ORDER_CUSTOMER">
+    <End Role="CUSTOMERS" Type="Self.CUSTOMERS" Multiplicity="1" />
+    <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMERS">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="ORDERS">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_ORDER_ORDERS_DETAIL">
+    <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="1" />
+    <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDERS">
+        <PropertyRef Name="id_order" />
+      </Principal>
+      <Dependent Role="ORDER_DETAIL">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_PRODUCT_ORDER_DETAIL">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="ORDER_DETAIL">
+        <PropertyRef Name="id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_PROMOTION_PRODUCT">
+    <End Role="PROMOTION" Type="Self.PROMOTION" Multiplicity="1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROMOTION">
+        <PropertyRef Name="id_promotion" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="id_promotion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_APP_ROLE">
+    <End Role="APP_ROLE" Type="Self.APP_ROLE" Multiplicity="1" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="APP_ROLE">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_DonDaGiao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_report_day" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="day" Type="int" Mode="In" />
+    <Parameter Name="month" Type="int" Mode="In" />
+    <Parameter Name="year" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_report_info_customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_order" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_ThongKe_SL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="TK_SPTHEO_CATEGORY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="TK_SPTHEO_CATEGORY1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="QLShopQAModelStoreContainer">
+    <EntitySet Name="APP_ROLE" EntityType="Self.APP_ROLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MENU_PRODUCT" EntityType="Self.MENU_PRODUCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDERS" EntityType="Self.ORDERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROMOTION" EntityType="Self.PROMOTION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STATUS_ORDER" EntityType="Self.STATUS_ORDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER_LIST" EntityType="Self.ORDER_LIST" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ORDER_LIST].[id_order] AS [id_order], 
+    [ORDER_LIST].[Ten_KH] AS [Ten_KH], 
+    [ORDER_LIST].[email] AS [email], 
+    [ORDER_LIST].[total_price] AS [total_price], 
+    [ORDER_LIST].[delivery_time] AS [delivery_time]
+    FROM [dbo].[ORDER_LIST] AS [ORDER_LIST]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ID_MENU_PRODUCT" Association="Self.FK_ID_MENU_PRODUCT">
+      <End Role="MENU_PRODUCT" EntitySet="MENU_PRODUCT" />
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_ORDER_CUSTOMER" Association="Self.FK_ID_ORDER_CUSTOMER">
+      <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+      <End Role="ORDERS" EntitySet="ORDERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_ORDER_ORDERS_DETAIL" Association="Self.FK_ID_ORDER_ORDERS_DETAIL">
+      <End Role="ORDERS" EntitySet="ORDERS" />
+      <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PRODUCT_ORDER_DETAIL" Association="Self.FK_ID_PRODUCT_ORDER_DETAIL">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PROMOTION_PRODUCT" Association="Self.FK_ID_PROMOTION_PRODUCT">
+      <End Role="PROMOTION" EntitySet="PROMOTION" />
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_APP_ROLE" Association="Self.FK_USER_APP_ROLE">
+      <End Role="APP_ROLE" EntitySet="APP_ROLE" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="ProjectFinal.View.Statistic.StatisticMainUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectFinal.View.Statistic"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converter="clr-namespace:ProjectFinal.Converter"    
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <materialDesign:Card Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 20">
+                <TextBlock Text="{DynamicResource STATISTIC}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       FontSize="22"
+                           Margin="20 0 20 0"
+                           Foreground="#FF4A57D8"
+                           FontWeight="Bold">
+
+                </TextBlock>
+            </StackPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="30 0 0 0" Text="Báo cáo doanh thu theo ngày:" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"></TextBlock>
+                        <DatePicker Grid.Column="1" Width="200" Margin="15" materialDesign:HintAssist.Hint="Báo Cáo Ngày"
+        Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+                                    SelectedDate="{Binding
+        Path=DateCur,
+        Mode=TwoWay}">
+                        </DatePicker>
+                        <Button
+                            Grid.Column="2"
+                    Command="{Binding ReportDayCMD}"
+                    Background="#FF4A57D8"
+                    Foreground="White"
+                    BorderBrush="{x:Null}"
+                            MinWidth="100"
+                        HorizontalAlignment="Left" VerticalAlignment="Center"             
+  Style="{StaticResource MaterialDesignRaisedAccentButton}"     
+  Content="Xem" />
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="30 0 0 0" Text="Báo cáo doanh thu theo tháng:" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"></TextBlock>
+                        <DatePicker Grid.Column="1" HorizontalAlignment="Left" Width="200" Margin="15" materialDesign:HintAssist.Hint="Báo Cáo Tháng"
+        Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+                                    SelectedDate="{Binding DateCurrent,Mode=TwoWay}">
+                            
+                        </DatePicker>
+                        <Button
+                            Grid.Column="2"
+                    Command="{Binding ReportMonthCMD}"
+                    Background="#FF4A57D8"
+                    Foreground="White"
+                    BorderBrush="{x:Null}"
+                            MinWidth="100"
+                        HorizontalAlignment="Left" VerticalAlignment="Center"             
+  Style="{StaticResource MaterialDesignRaisedAccentButton}"     
+  Content="Xem" />
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="30 0 0 0" Text="Báo cáo doanh thu theo năm:" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"></TextBlock>
+                        <DatePicker Grid.Column="1" Width="200" Margin="15" materialDesign:HintAssist.Hint="Báo Cáo Năm"
+        Style="{StaticResource MaterialDesignOutlinedDatePicker}" 
+                                    SelectedDate="{Binding DateCurrent,Mode=TwoWay}">
+                            
+                        </DatePicker>
+                        <Button
+                            Grid.Column="2"
+                    Command="{Binding ReportYearCMD}"
+                    Background="#FF4A57D8"
+                    Foreground="White"
+                    BorderBrush="{x:Null}"
+                            MinWidth="100"
+                        HorizontalAlignment="Left" VerticalAlignment="Center"             
+  Style="{StaticResource MaterialDesignRaisedAccentButton}"     
+  Content="Xem" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

@@ -1,0 +1,845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLShopQAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="APP_ROLE">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="role_name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_color" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUSTOMERS">
+          <Key>
+            <PropertyRef Name="id_customer" />
+          </Key>
+          <Property Name="id_customer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="gender" Type="nvarchar" MaxLength="255" />
+          <Property Name="profile_pic_url" Type="varchar" MaxLength="255" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="phone" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MENU_PRODUCT">
+          <Key>
+            <PropertyRef Name="id_menu_product" />
+          </Key>
+          <Property Name="id_menu_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="image_product" Type="varchar" MaxLength="255" />
+          <Property Name="type_product" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ORDER_DETAIL">
+          <Key>
+            <PropertyRef Name="id_order_detail" />
+          </Key>
+          <Property Name="id_order_detail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="id_product" Type="int" Nullable="false" />
+          <Property Name="id_order" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="unit_price" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ORDERS">
+          <Key>
+            <PropertyRef Name="id_order" />
+          </Key>
+          <Property Name="id_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="status_order" Type="varchar" MaxLength="255" />
+          <Property Name="total_price" Type="bigint" />
+          <Property Name="delivery_time" Type="datetime" />
+          <Property Name="total_product" Type="int" />
+          <Property Name="id_customer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="image_product" Type="varchar" MaxLength="255" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="price" Type="bigint" />
+          <Property Name="size" Type="varchar" MaxLength="255" />
+          <Property Name="color" Type="varchar" MaxLength="255" />
+          <Property Name="id_promotion" Type="int" Nullable="false" />
+          <Property Name="id_menu_product" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROMOTION">
+          <Key>
+            <PropertyRef Name="id_promotion" />
+          </Key>
+          <Property Name="id_promotion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="available_from" Type="datetime" />
+          <Property Name="available_to" Type="datetime" />
+          <Property Name="image_promotion" Type="varchar" MaxLength="255" />
+          <Property Name="percent_down" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_size" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STATUS_ORDER">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_status" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="user_name" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="255" />
+          <Property Name="image_user" Type="nchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QLShopQA.dbo.ORDER_LIST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ORDER_LIST">
+          <Key>
+            <PropertyRef Name="id_order" />
+            <PropertyRef Name="Ten_KH" />
+          </Key>
+          <Property Name="id_order" Type="int" Nullable="false" />
+          <Property Name="Ten_KH" Type="nvarchar" MaxLength="511" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="total_price" Type="bigint" />
+          <Property Name="delivery_time" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_ID_MENU_PRODUCT">
+          <End Role="MENU_PRODUCT" Type="Self.MENU_PRODUCT" Multiplicity="1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU_PRODUCT">
+              <PropertyRef Name="id_menu_product" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="id_menu_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_ORDER_CUSTOMER">
+          <End Role="CUSTOMERS" Type="Self.CUSTOMERS" Multiplicity="1" />
+          <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMERS">
+              <PropertyRef Name="id_customer" />
+            </Principal>
+            <Dependent Role="ORDERS">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_ORDER_ORDERS_DETAIL">
+          <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="1" />
+          <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDERS">
+              <PropertyRef Name="id_order" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_PRODUCT_ORDER_DETAIL">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_PROMOTION_PRODUCT">
+          <End Role="PROMOTION" Type="Self.PROMOTION" Multiplicity="1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROMOTION">
+              <PropertyRef Name="id_promotion" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="id_promotion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_APP_ROLE">
+          <End Role="APP_ROLE" Type="Self.APP_ROLE" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APP_ROLE">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_DonDaGiao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_report_day" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="day" Type="int" Mode="In" />
+          <Parameter Name="month" Type="int" Mode="In" />
+          <Parameter Name="year" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_report_info_customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_order" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_ThongKe_SL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TK_SPTHEO_CATEGORY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TK_SPTHEO_CATEGORY1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="QLShopQAModelStoreContainer">
+          <EntitySet Name="APP_ROLE" EntityType="Self.APP_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENU_PRODUCT" EntityType="Self.MENU_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDERS" EntityType="Self.ORDERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROMOTION" EntityType="Self.PROMOTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATUS_ORDER" EntityType="Self.STATUS_ORDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDER_LIST" EntityType="Self.ORDER_LIST" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ORDER_LIST].[id_order] AS [id_order], 
+    [ORDER_LIST].[Ten_KH] AS [Ten_KH], 
+    [ORDER_LIST].[email] AS [email], 
+    [ORDER_LIST].[total_price] AS [total_price], 
+    [ORDER_LIST].[delivery_time] AS [delivery_time]
+    FROM [dbo].[ORDER_LIST] AS [ORDER_LIST]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ID_MENU_PRODUCT" Association="Self.FK_ID_MENU_PRODUCT">
+            <End Role="MENU_PRODUCT" EntitySet="MENU_PRODUCT" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_ORDER_CUSTOMER" Association="Self.FK_ID_ORDER_CUSTOMER">
+            <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+            <End Role="ORDERS" EntitySet="ORDERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_ORDER_ORDERS_DETAIL" Association="Self.FK_ID_ORDER_ORDERS_DETAIL">
+            <End Role="ORDERS" EntitySet="ORDERS" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_PRODUCT_ORDER_DETAIL" Association="Self.FK_ID_PRODUCT_ORDER_DETAIL">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_PROMOTION_PRODUCT" Association="Self.FK_ID_PROMOTION_PRODUCT">
+            <End Role="PROMOTION" EntitySet="PROMOTION" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_APP_ROLE" Association="Self.FK_USER_APP_ROLE">
+            <End Role="APP_ROLE" EntitySet="APP_ROLE" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLShopQAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="APP_ROLE">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="role_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK_USER_APP_ROLE" FromRole="APP_ROLE" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_color" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="id_customer" />
+          </Key>
+          <Property Name="id_customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="profile_pic_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ORDERS" Relationship="Self.FK_ID_ORDER_CUSTOMER" FromRole="CUSTOMERS" ToRole="ORDERS" />
+        </EntityType>
+        <EntityType Name="MENU_PRODUCT">
+          <Key>
+            <PropertyRef Name="id_menu_product" />
+          </Key>
+          <Property Name="id_menu_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="image_product" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="type_product" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRODUCTs" Relationship="Self.FK_ID_MENU_PRODUCT" FromRole="MENU_PRODUCT" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="ORDER_DETAIL">
+          <Key>
+            <PropertyRef Name="id_order_detail" />
+          </Key>
+          <Property Name="id_order_detail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="id_product" Type="Int32" Nullable="false" />
+          <Property Name="id_order" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="unit_price" Type="Int64" />
+          <NavigationProperty Name="ORDER" Relationship="Self.FK_ID_ORDER_ORDERS_DETAIL" FromRole="ORDER_DETAIL" ToRole="ORDERS" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_ID_PRODUCT_ORDER_DETAIL" FromRole="ORDER_DETAIL" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="id_order" />
+          </Key>
+          <Property Name="id_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="status_order" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="total_price" Type="Int64" />
+          <Property Name="delivery_time" Type="DateTime" Precision="3" />
+          <Property Name="total_product" Type="Int32" />
+          <Property Name="id_customer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_ID_ORDER_CUSTOMER" FromRole="ORDERS" ToRole="CUSTOMERS" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="Self.FK_ID_ORDER_ORDERS_DETAIL" FromRole="ORDERS" ToRole="ORDER_DETAIL" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="image_product" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Int64" />
+          <Property Name="size" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="color" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="id_promotion" Type="Int32" Nullable="false" />
+          <Property Name="id_menu_product" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MENU_PRODUCT" Relationship="Self.FK_ID_MENU_PRODUCT" FromRole="PRODUCT" ToRole="MENU_PRODUCT" />
+          <NavigationProperty Name="ORDER_DETAIL" Relationship="Self.FK_ID_PRODUCT_ORDER_DETAIL" FromRole="PRODUCT" ToRole="ORDER_DETAIL" />
+          <NavigationProperty Name="PROMOTION" Relationship="Self.FK_ID_PROMOTION_PRODUCT" FromRole="PRODUCT" ToRole="PROMOTION" />
+        </EntityType>
+        <EntityType Name="PROMOTION">
+          <Key>
+            <PropertyRef Name="id_promotion" />
+          </Key>
+          <Property Name="id_promotion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="available_from" Type="DateTime" Precision="3" />
+          <Property Name="available_to" Type="DateTime" Precision="3" />
+          <Property Name="image_promotion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="percent_down" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRODUCTs" Relationship="Self.FK_ID_PROMOTION_PRODUCT" FromRole="PROMOTION" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_size" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STATUS_ORDER">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="image_user" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="APP_ROLE" Relationship="Self.FK_USER_APP_ROLE" FromRole="USERS" ToRole="APP_ROLE" />
+        </EntityType>
+        <EntityType Name="ORDER_LIST">
+          <Key>
+            <PropertyRef Name="id_order" />
+            <PropertyRef Name="Ten_KH" />
+          </Key>
+          <Property Name="id_order" Type="Int32" Nullable="false" />
+          <Property Name="Ten_KH" Type="String" MaxLength="511" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="total_price" Type="Int64" />
+          <Property Name="delivery_time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_USER_APP_ROLE">
+          <End Role="APP_ROLE" Type="Self.APP_ROLE" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APP_ROLE">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_ORDER_CUSTOMER">
+          <End Role="CUSTOMERS" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="ORDERS" Type="Self.ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMERS">
+              <PropertyRef Name="id_customer" />
+            </Principal>
+            <Dependent Role="ORDERS">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_MENU_PRODUCT">
+          <End Role="MENU_PRODUCT" Type="Self.MENU_PRODUCT" Multiplicity="1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU_PRODUCT">
+              <PropertyRef Name="id_menu_product" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="id_menu_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_ORDER_ORDERS_DETAIL">
+          <End Role="ORDERS" Type="Self.ORDER" Multiplicity="1" />
+          <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDERS">
+              <PropertyRef Name="id_order" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="id_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_PRODUCT_ORDER_DETAIL">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="ORDER_DETAIL">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_PROMOTION_PRODUCT">
+          <End Role="PROMOTION" Type="Self.PROMOTION" Multiplicity="1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROMOTION">
+              <PropertyRef Name="id_promotion" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="id_promotion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLShopQAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="APP_ROLE" EntityType="Self.APP_ROLE" />
+          <EntitySet Name="Colors" EntityType="Self.Color" />
+          <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="MENU_PRODUCT" EntityType="Self.MENU_PRODUCT" />
+          <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" />
+          <EntitySet Name="ORDERS" EntityType="Self.ORDER" />
+          <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
+          <EntitySet Name="PROMOTIONs" EntityType="Self.PROMOTION" />
+          <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="STATUS_ORDER" EntityType="Self.STATUS_ORDER" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <EntitySet Name="ORDER_LIST" EntityType="Self.ORDER_LIST" />
+          <AssociationSet Name="FK_USER_APP_ROLE" Association="Self.FK_USER_APP_ROLE">
+            <End Role="APP_ROLE" EntitySet="APP_ROLE" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_ORDER_CUSTOMER" Association="Self.FK_ID_ORDER_CUSTOMER">
+            <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+            <End Role="ORDERS" EntitySet="ORDERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_MENU_PRODUCT" Association="Self.FK_ID_MENU_PRODUCT">
+            <End Role="MENU_PRODUCT" EntitySet="MENU_PRODUCT" />
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_ORDER_ORDERS_DETAIL" Association="Self.FK_ID_ORDER_ORDERS_DETAIL">
+            <End Role="ORDERS" EntitySet="ORDERS" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_PRODUCT_ORDER_DETAIL" Association="Self.FK_ID_PRODUCT_ORDER_DETAIL">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_PROMOTION_PRODUCT" Association="Self.FK_ID_PROMOTION_PRODUCT">
+            <End Role="PROMOTION" EntitySet="PROMOTIONs" />
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+          </AssociationSet>
+          <FunctionImport Name="SP_DonDaGiao" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SP_ThongKe_SL" ReturnType="Collection(QLShopQAModel.SP_ThongKe_SL_Result)" />
+          <FunctionImport Name="TK_SPTHEO_CATEGORY" ReturnType="Collection(QLShopQAModel.TK_SPTHEO_CATEGORY_Result)" />
+          <FunctionImport Name="TK_SPTHEO_CATEGORY1" ReturnType="Collection(QLShopQAModel.TK_SPTHEO_CATEGORY1_Result)" />
+          <FunctionImport Name="sp_report_info_customer" ReturnType="Collection(QLShopQAModel.sp_report_info_customer_Result)">
+          <Parameter Name="id_order" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_report_day" ReturnType="Collection(QLShopQAModel.sp_report_day_Result)">
+            <Parameter Name="day" Mode="In" Type="Int32" />
+            <Parameter Name="month" Mode="In" Type="Int32" />
+            <Parameter Name="year" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_ThongKe_SL_Result">
+          <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="TOTAL_QUANTITY_OF_PRODUCT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TK_SPTHEO_CATEGORY_Result">
+          <Property Type="String" Name="type_product" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TK_SPTHEO_CATEGORY1_Result">
+          <Property Type="String" Name="type_product" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_report_info_customer_Result">
+          <Property Type="Int32" Name="id_order" Nullable="false" />
+          <Property Type="DateTime" Name="created_date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="delivery_time" Nullable="true" Precision="23" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_report_day_Result">
+          <Property Type="String" Name="name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="modified_date" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="total_product" Nullable="true" />
+          <Property Type="Int64" Name="total_price" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLShopQAModelStoreContainer" CdmEntityContainer="QLShopQAEntities">
+          <EntitySetMapping Name="APP_ROLE">
+            <EntityTypeMapping TypeName="QLShopQAModel.APP_ROLE">
+              <MappingFragment StoreEntitySet="APP_ROLE">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="QLShopQAModel.Color">
+              <MappingFragment StoreEntitySet="Color">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name_color" ColumnName="name_color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERS">
+            <EntityTypeMapping TypeName="QLShopQAModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMERS">
+                <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="profile_pic_url" ColumnName="profile_pic_url" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENU_PRODUCT">
+            <EntityTypeMapping TypeName="QLShopQAModel.MENU_PRODUCT">
+              <MappingFragment StoreEntitySet="MENU_PRODUCT">
+                <ScalarProperty Name="id_menu_product" ColumnName="id_menu_product" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="image_product" ColumnName="image_product" />
+                <ScalarProperty Name="type_product" ColumnName="type_product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDER_DETAIL">
+            <EntityTypeMapping TypeName="QLShopQAModel.ORDER_DETAIL">
+              <MappingFragment StoreEntitySet="ORDER_DETAIL">
+                <ScalarProperty Name="id_order_detail" ColumnName="id_order_detail" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDERS">
+            <EntityTypeMapping TypeName="QLShopQAModel.ORDER">
+              <MappingFragment StoreEntitySet="ORDERS">
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="status_order" ColumnName="status_order" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="delivery_time" ColumnName="delivery_time" />
+                <ScalarProperty Name="total_product" ColumnName="total_product" />
+                <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTs">
+            <EntityTypeMapping TypeName="QLShopQAModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="image_product" ColumnName="image_product" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="id_promotion" ColumnName="id_promotion" />
+                <ScalarProperty Name="id_menu_product" ColumnName="id_menu_product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROMOTIONs">
+            <EntityTypeMapping TypeName="QLShopQAModel.PROMOTION">
+              <MappingFragment StoreEntitySet="PROMOTION">
+                <ScalarProperty Name="id_promotion" ColumnName="id_promotion" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="available_from" ColumnName="available_from" />
+                <ScalarProperty Name="available_to" ColumnName="available_to" />
+                <ScalarProperty Name="image_promotion" ColumnName="image_promotion" />
+                <ScalarProperty Name="percent_down" ColumnName="percent_down" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="QLShopQAModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name_size" ColumnName="name_size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATUS_ORDER">
+            <EntityTypeMapping TypeName="QLShopQAModel.STATUS_ORDER">
+              <MappingFragment StoreEntitySet="STATUS_ORDER">
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="name_status" ColumnName="name_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLShopQAModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="QLShopQAModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="image_user" ColumnName="image_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDER_LIST">
+            <EntityTypeMapping TypeName="QLShopQAModel.ORDER_LIST">
+              <MappingFragment StoreEntitySet="ORDER_LIST">
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="Ten_KH" ColumnName="Ten_KH" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="delivery_time" ColumnName="delivery_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_DonDaGiao" FunctionName="QLShopQAModel.Store.SP_DonDaGiao" />
+          <FunctionImportMapping FunctionImportName="SP_ThongKe_SL" FunctionName="QLShopQAModel.Store.SP_ThongKe_SL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopQAModel.SP_ThongKe_SL_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="TOTAL_QUANTITY_OF_PRODUCT" ColumnName="TOTAL_QUANTITY_OF_PRODUCT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TK_SPTHEO_CATEGORY" FunctionName="QLShopQAModel.Store.TK_SPTHEO_CATEGORY">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopQAModel.TK_SPTHEO_CATEGORY_Result">
+                <ScalarProperty Name="type_product" ColumnName="type_product" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TK_SPTHEO_CATEGORY1" FunctionName="QLShopQAModel.Store.TK_SPTHEO_CATEGORY1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopQAModel.TK_SPTHEO_CATEGORY1_Result">
+                <ScalarProperty Name="type_product" ColumnName="type_product" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_report_info_customer" FunctionName="QLShopQAModel.Store.sp_report_info_customer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopQAModel.sp_report_info_customer_Result">
+                <ScalarProperty Name="id_order" ColumnName="id_order" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="delivery_time" ColumnName="delivery_time" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_report_day" FunctionName="QLShopQAModel.Store.sp_report_day">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLShopQAModel.sp_report_day_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="total_product" ColumnName="total_product" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

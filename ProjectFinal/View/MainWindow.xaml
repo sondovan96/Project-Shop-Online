@@ -1,0 +1,319 @@
+﻿<Window x:Class="ProjectFinal.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectFinal"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d" Height="750" Width="1400" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+        DataContext="{StaticResource MainViewModel}"
+        TextElement.FontWeight="Regular"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="CanResizeWithGrip" WindowStyle="None"
+        >
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="220"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="220"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ContentOpen">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="GridContent">
+                <SplineThicknessKeyFrame KeyTime="0" Value="65, 100, 0, 0" />
+                <SplineThicknessKeyFrame KeyTime="0:0:0.2" Value="225, 100 ,0 ,0" />
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ContentClose">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="GridContent">
+                <SplineThicknessKeyFrame KeyTime="0" Value="225, 100 ,0 ,0" />
+                <SplineThicknessKeyFrame KeyTime="0:0:0.2" Value="65, 100, 0, 0" />
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ImageOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="logo">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="220" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ImageClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Width" Storyboard.TargetName="logo">
+                <EasingDoubleKeyFrame KeyTime="0" Value="220" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="60" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource ContentOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource ContentClose}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource ImageOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource ImageClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <materialDesign:DialogHost Identifier="MainDialog" CloseOnClickAway="True">
+        <Grid>
+            <!--<Grid.ColumnDefinitions >
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="899"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="650"/>
+        </Grid.RowDefinitions>-->
+            <Grid x:Name="GridBarTitle" Background="White" MouseDown="GridBarTitle_MouseDown" Height="100" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+
+                    <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    ToolTip="Thông Báo" 
+                    Height="50"
+                    Width="50" Margin="0 0 10 0" Background="White" BorderBrush="{x:Null}" Foreground="gray">
+                        <materialDesign:Badged Badge="{Binding NewOrder}" BadgeBackground="Red">
+                            <materialDesign:PackIcon Kind="Bell"  
+                        Height="25"
+                        Width="25"
+                                                 
+                        />
+                        </materialDesign:Badged>
+                    </Button>
+                    <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    ToolTip="Tin nhắn" 
+                    Height="50"
+                    Width="50" Margin="0 0 10 0" Background="White" BorderBrush="{x:Null}" Foreground="gray">
+                        <materialDesign:Badged Badge="3" BadgeBackground="Red">
+                            <materialDesign:PackIcon Kind="Email"  
+                        Height="25"
+                        Width="25"
+                        />
+                        </materialDesign:Badged>
+                    </Button>
+                    <Rectangle VerticalAlignment="Stretch" Width="1" Margin="10" Stroke="Gray" />
+                    <TextBlock Width="100" VerticalAlignment="Center" Margin="0 0 10 0" Text="{Binding UserCurrent.name}"></TextBlock>
+                    <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    ToolTip="MaterialDesignFloatingActionMiniAccentButton" 
+                    Height="50"
+                    Width="50" Margin="0 0 10 0"  BorderBrush="{x:Null}" Foreground="{x:Null}" Background="{x:Null}">
+                        <Image Source="{Binding UserCurrent.image_user}" Stretch="Fill"></Image>
+                    </Button>
+                    <materialDesign:PopupBox
+                  DockPanel.Dock="Right"
+                  PlacementMode="BottomAndAlignRightEdges" Margin="20 0 0 0"
+                  StaysOpen="False"
+                    >
+                        <StackPanel Width="150">
+                            <Button Content="Change Password" Command="{Binding ChangePassCMD}"/>
+                            <Separator/>
+                            <Button Content="Language" Command="{Binding SettingCMD}"/>
+                            <Button Content="Help"/>
+                            <Separator/>
+                            <Button x:Name="btnLogout" Content="Exit"
+                            Click="btnLogout_Click"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="GridMenu" Background="#FF4E73DF" HorizontalAlignment="Left" Width="60">
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
+                </Grid.Effect>
+
+                <StackPanel>
+                    <StackPanel >
+                        <Image x:Name="logo" Source="/Assets/logo1.png" Stretch="Fill" Width="60" Height="100"></Image>
+                    </StackPanel>
+                    <Grid Background="#FF4E73DF" HorizontalAlignment="Right" >
+                        <!--<ToggleButton
+        Style="{DynamicResource MaterialDesignHamburgerToggleButton}" Foreground="White" VerticalAlignment="Center" Height="60"/>-->
+                        <Button x:Name="btnOpenMenu"  Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" Height="60" Click="btnOpenMenu_Click">
+                            <materialDesign:PackIcon Kind="Menu" Width="30" Height="30">
+                            </materialDesign:PackIcon>
+                        </Button>
+                        <Button x:Name="btnCloseMenu" Visibility="Collapsed" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" Height="60" Click="btnCloseMenu_Click">
+                            <materialDesign:PackIcon Kind="ArrowLeft" Width="30" Height="30" >
+                            </materialDesign:PackIcon>
+                        </Button>
+                    </Grid>
+
+                    <!--<ListView Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="10">
+
+                            </materialDesign:PackIcon>
+                            <TextBlock Text="DashBoard" FontSize="18" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction 
+                        Command="{Binding OrderCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="TruckDelivery" Width="30" Height="30" VerticalAlignment="Center" Margin="10">
+
+                            </materialDesign:PackIcon>
+                            <TextBlock Text="Order" FontSize="18" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="PackageVariantClosed" Width="30" Height="30" VerticalAlignment="Center" Margin="10">
+
+                            </materialDesign:PackIcon>
+                            <TextBlock Text="Products" FontSize="18" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountGroup" Width="30" Height="30" VerticalAlignment="Center" Margin="10">
+
+                            </materialDesign:PackIcon>
+                            <TextBlock Text="Customer" FontSize="18" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Account" Width="30" Height="30" VerticalAlignment="Center" Margin="10">
+
+                            </materialDesign:PackIcon>
+                            <TextBlock Text="Account" FontSize="18" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FaceAgent" Width="30" Height="30" VerticalAlignment="Center" Margin="10">
+
+                            </materialDesign:PackIcon>
+                            <TextBlock Text="Support" FontSize="18" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Sale" Width="30" Height="30" VerticalAlignment="Center" Margin="10">
+
+                            </materialDesign:PackIcon>
+                            <TextBlock Text="Promotion" FontSize="18" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Printer" Width="30" Height="30" VerticalAlignment="Center" Margin="10">
+
+                            </materialDesign:PackIcon>
+                            <TextBlock Text="Report" FontSize="18" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Wechat" Width="30" Height="30" VerticalAlignment="Center" Margin="10">
+
+                            </materialDesign:PackIcon>
+                            <TextBlock Text="Feedback" FontSize="18" VerticalAlignment="Center" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>-->
+
+                    <ListBox Grid.Row="1" Margin="0 10 0 0" ItemsSource="{Binding ListItemNavigate}" SelectedItem="{Binding SelectedView}"
+                         Width="240" Height="auto">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                                <Setter Property="Padding" Value="0 9"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF4565B7"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#FF4565B7"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="30" Width="auto">
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="Opacity" Value="0.6"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <DataTrigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard Storyboard.TargetProperty="Opacity" >
+                                                                <DoubleAnimation Duration="0:0:0.3" To="1"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.EnterActions>
+                                                    <DataTrigger.ExitActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard Storyboard.TargetProperty="Opacity" >
+                                                                <DoubleAnimation Duration="0:0:0.3" To="0.6"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.ExitActions>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width=".8*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Margin="0 -5" Background="White" CornerRadius="0 7 7 0" Visibility="{Binding IsSelected}"/>
+                                    <materialDesign:PackIcon Grid.Column="1" Margin="10 0 0 0" Kind="{Binding Icon}" Width="Auto" Height="Auto" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    <TextBlock Grid.Column="2" Margin="0 0 0 0" Text="{Binding DisplayName}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontSize="14" FontWeight="SemiBold"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="GridContent" Margin="65 100 0 0">
+                <materialDesign:Card>
+                    <ContentControl Content="{Binding ViewCurrent}"></ContentControl>
+                </materialDesign:Card>
+            </Grid>
+
+        </Grid>
+    </materialDesign:DialogHost>
+
+</Window>

@@ -1,0 +1,142 @@
+﻿<UserControl x:Class="ProjectFinal.View.Order.OrderUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectFinal.View.Order"
+             xmlns:converter="clr-namespace:ProjectFinal.Converter"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             x:Name="oderuc"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:ImageConverter x:Key="ProductImage"/>
+        <converter:ListViewIndexConvert  x:Key="ListViewIndex"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <materialDesign:Card Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 20">
+                <TextBlock Text="{DynamicResource ORDER}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       FontSize="22"
+                           Margin="20 0 20 0"
+                           Foreground="#FF4A57D8"
+                           FontWeight="Bold">
+
+                </TextBlock>
+                <Button
+                    Command="{Binding AddNewOrderCMD}"
+                    Background="#FF4A57D8"
+                    Foreground="White"
+                    BorderBrush="{x:Null}"
+                    HorizontalAlignment="Left" VerticalAlignment="Center"                 
+  Style="{StaticResource MaterialDesignRaisedAccentButton}"
+  Content="ADD NEW" />
+
+            </StackPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Row="1" VerticalAlignment="Center" Margin="5" Height="520">
+            <ListView ItemsSource="{Binding OrderList}" SelectedItem="{Binding SelectedItem,Mode=OneWayToSource}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="{DynamicResource NO.}" DisplayMemberBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Converter={StaticResource ListViewIndex}}"></GridViewColumn>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding CUSTOMER.name}"></GridViewColumn>
+                        <GridViewColumn Header="Email" DisplayMemberBinding="{Binding CUSTOMER.email}"></GridViewColumn>
+                        <GridViewColumn Header="Total Price" DisplayMemberBinding="{Binding total_price}"></GridViewColumn>
+                        <GridViewColumn Header="Time Order" DisplayMemberBinding="{Binding delivery_time}"></GridViewColumn>
+                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding status_order}"></GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                          Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},Path=DataContext.EditOrderCMD}" CommandParameter="{Binding}"
+                                        Background="#FF4A57D8"
+                    Foreground="White"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonAssist.CornerRadius="10"
+                                       BorderBrush="{x:Null}"
+                                        Width="70"
+                                        Content="Sửa"
+                                       />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                      
+                        <GridViewColumn >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                          Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},Path=DataContext.EditStatusOrderCMD}" CommandParameter="{Binding}"
+                                        Background="#FF4A57D8"
+                    Foreground="White"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonAssist.CornerRadius="10"
+                                       BorderBrush="{x:Null}"
+                                        Width="auto"
+                                        Content="Trạng thái"
+                                       />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                          Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},Path=DataContext.CheckOrderDetailCMD}" CommandParameter="{Binding}"
+                                        Background="#FF4A57D8"
+                    Foreground="White"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonAssist.CornerRadius="10"
+                                       BorderBrush="{x:Null}"
+                                        Width="70"
+                                        Content="Xem"
+                                       />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                          Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},Path=DataContext.AddProductOrderDetailCMD}" CommandParameter="{Binding}"
+                                        Background="#FF4A57D8"
+                    Foreground="White"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonAssist.CornerRadius="10"
+                                       BorderBrush="{x:Null}"
+                                        Width="auto"
+                                        Content="Thêm sản phẩm"
+                                       />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                          Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},Path=DataContext.PrintBillCMD}" CommandParameter="{Binding}"
+                                        Background="#FF4A57D8"
+                    Foreground="White"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonAssist.CornerRadius="10"
+                                       BorderBrush="{x:Null}"
+                                        Width="auto"
+                                        Content="In hoá đơn"
+                                       />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

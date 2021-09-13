@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="ProjectFinal.View.Home.HomeUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectFinal.View.Home"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <materialDesign:Card Grid.Column="0" Margin="15" UniformCornerRadius="17">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".4*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="PackageVariantClosed" Width="Auto" Height="Auto" Foreground="Gray" VerticalAlignment="Center" Margin="10 10 7 7"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Đơn Đặt Hàng" VerticalAlignment="Center" FontSize="18" HorizontalAlignment="Left" Foreground="Gray"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 30" Text="{Binding CountOrder}" VerticalAlignment="Center" FontSize="47" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Column="1" Margin="15" UniformCornerRadius="17">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".4*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="Buffer" Width="Auto" Height="Auto" Foreground="Gray" VerticalAlignment="Center" Margin="10 10 7 7"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Đơn Đã Giao" VerticalAlignment="Center" FontSize="18" HorizontalAlignment="Left" Foreground="Gray"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 30" Text="{Binding CountDelivered}" VerticalAlignment="Center" FontSize="47" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Column="2" Margin="15" UniformCornerRadius="17">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".4*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="TruckDelivery" Width="Auto" Height="Auto" Foreground="Gray" VerticalAlignment="Center" Margin="10 10 7 7"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Đơn Đang Giao" VerticalAlignment="Center" FontSize="18" HorizontalAlignment="Left" Foreground="Gray"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 30" Text="{Binding CountDelivering}" VerticalAlignment="Center" FontSize="47" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Column="3" Margin="15" UniformCornerRadius="17">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".4*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="HumanHandsup" Width="Auto" Height="Auto" Foreground="Gray" VerticalAlignment="Center" Margin="10 10 7 7"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Tổng Sản Phẩm" VerticalAlignment="Center" FontSize="18" HorizontalAlignment="Left" Foreground="Gray"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 0 30" Text="{Binding CountProduct}" VerticalAlignment="Center" FontSize="47" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <lvc:CartesianChart Grid.Column="0" Margin="5">
+                <lvc:CartesianChart Series="{Binding senderChart1}">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Labels="{Binding AxistListNameTK1}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Step="1" Stroke="{x:Null}"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>
+            </lvc:CartesianChart>
+
+            <lvc:CartesianChart Grid.Column="1" Margin="5">
+                <lvc:CartesianChart Series="{Binding senderChart}">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Labels="{Binding AxistListNameTK}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Step="1" Stroke="{x:Null}"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>
+            </lvc:CartesianChart>
+        </Grid>
+
+    </Grid>
+</UserControl>

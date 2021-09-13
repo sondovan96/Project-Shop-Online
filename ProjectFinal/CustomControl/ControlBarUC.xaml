@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="ProjectFinal.CustomControl.ControlBarUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProjectFinal.CustomControl"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             x:Name="ucControlBar">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding DragMoveWindowCommand}" CommandParameter="{Binding ElementName=ucControlBar}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <materialDesign:ColorZone
+  Background="#FF4E73DF">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Button
+                        ToolTip="Cài đặt"
+                        ToolBar.OverflowMode="AsNeeded"
+      Content="{materialDesign:PackIcon Kind=CogOutline}" 
+                        Background="#FF4E73DF" BorderBrush="{x:Null}"
+                        Margin="5"/>
+                    <Button
+                        ToolTip="Thu nhỏ"
+                        ToolBar.OverflowMode="AsNeeded"
+                        Background="#FF4E73DF"
+                        BorderBrush="{x:Null}"
+                        Margin="5"
+                        Command="{Binding MinimizeWindowCommand}"
+                        CommandParameter="{Binding ElementName=ucControlBar}"
+      Content="{materialDesign:PackIcon Kind=WindowMinimize}" />
+                    <Button
+                        ToolTip="Thoát"
+                        ToolBar.OverflowMode="AsNeeded"
+                        Background="#FF4E73DF"
+                        BorderBrush="{x:Null}"
+                        Margin="5"
+                        Command="{Binding CloseWindowCommand}"
+                        CommandParameter="{Binding ElementName=ucControlBar}"
+      Content="{materialDesign:PackIcon Kind=WindowClose}" />
+                </StackPanel>
+                <StackPanel
+                Orientation="Horizontal"
+                    DockPanel.Dock="Right">
+
+                    <TextBlock
+      VerticalAlignment="Center"
+      Margin="16 0 0 0"
+      Text="{Binding Tag,ElementName=ucControlBar}" 
+                        Foreground="White"
+                        FontSize="18"
+                    />
+
+                </StackPanel>
+            </DockPanel>
+
+        </materialDesign:ColorZone>
+    </Grid>
+</UserControl>

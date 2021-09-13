@@ -1,0 +1,128 @@
+﻿<Window x:Class="ProjectFinal.View.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectFinal.View"
+       
+        xmlns:uc="clr-namespace:ProjectFinal.CustomControl"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        x:Name="loginwindow"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+         DataContext="{StaticResource LoginViewModel}"
+        Title="{DynamicResource APP_NAME}" Height="400" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Foreground="#FF4E73DF" WindowStyle="None">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.ColumnSpan="2">
+            <uc:ControlBarUC Tag="{Binding Title,ElementName=loginwindow}"></uc:ControlBarUC>
+        </Grid>
+        <Grid Grid.RowSpan="2" Grid.Row="1">
+            <Image Source="/Assets/evo_banner_two_2.jpg" Stretch="Fill"></Image>
+        </Grid>
+        <Grid  Grid.Column="1" Grid.Row="2">
+            <TextBlock Text="LOGIN" 
+                       HorizontalAlignment="Center" 
+                       Height="50"
+                       VerticalAlignment="Top"
+                       FontSize="26" FontWeight="Bold"
+                       Margin="0 30 0 0">
+
+            </TextBlock>
+            <materialDesign:Card
+                Width="300" Height="200" UniformCornerRadius="6" Margin="0 22 0 0">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <TextBox
+  materialDesign:HintAssist.Hint="UserName"
+                            x:Name="tbx_user"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            Foreground="Black"
+                            Margin="15 0 15 5"
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+  VerticalAlignment="Center" 
+                             Text="{Binding CurrentAccount.user_name, UpdateSourceTrigger=PropertyChanged}"
+                            />
+                    </Grid>
+                    <Grid Grid.Row="1">
+
+                        <PasswordBox
+                            x:Name="pwFloat"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+  materialDesign:HintAssist.Hint="Password"
+                            
+                            Foreground="Black"
+                            Margin="15 0 15 5"
+  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+  VerticalAlignment="Center">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                                       CommandParameter="{Binding ElementName=pwFloat}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+    materialDesign:ButtonAssist.CornerRadius="20"
+                                Margin="15 0 15 0"
+    ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Background="#FF0F2DA8"
+                                Command="{Binding LoginCMD}">
+                                <TextBlock
+      Text="Đăng nhập" 
+                                    />
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button
+    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+    materialDesign:ButtonAssist.CornerRadius="20"
+                                 Margin="15 0 15 0"
+                                Background="#FF0F2DA8"
+    ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                                Command="{Binding CloseCMD}">
+                                <TextBlock
+      Text="Thoát"
+                                    />
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Button Content="Quên tài khoản? Mật khẩu?" HorizontalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF4E73DF">
+
+                        </Button>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+
+    </Grid>
+</Window>

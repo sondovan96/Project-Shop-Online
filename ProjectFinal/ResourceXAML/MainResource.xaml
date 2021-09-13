@@ -1,0 +1,123 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodels="clr-namespace:ProjectFinal.ViewModel"
+                    xmlns:orderviewmodel="clr-namespace:ProjectFinal.ViewModel.Order"
+                    xmlns:productviewmodel="clr-namespace:ProjectFinal.ViewModel.Product"
+                    xmlns:homeviewmodel="clr-namespace:ProjectFinal.ViewModel.Home"
+                    xmlns:dialogview ="clr-namespace:ProjectFinal.View.Dialog"
+                    xmlns:promotionview="clr-namespace:ProjectFinal.View.Promotion"
+                    xmlns:customerview="clr-namespace:ProjectFinal.View.Customer"
+                    xmlns:categoryview ="clr-namespace:ProjectFinal.View.Category"
+                    xmlns:accountview="clr-namespace:ProjectFinal.View.Account"
+                    xmlns:parameterview="clr-namespace:ProjectFinal.View.Parameter"
+                    xmlns:statisticview="clr-namespace:ProjectFinal.View.Statistic"
+                    xmlns:settingview="clr-namespace:ProjectFinal.View.Setting"
+                    
+                    
+                    xmlns:settingviewmodel="clr-namespace:ProjectFinal.ViewModel.Setting"
+                    xmlns:statisticviewmodel="clr-namespace:ProjectFinal.ViewModel.Statistic"
+                    xmlns:parameterviewmodel="clr-namespace:ProjectFinal.ViewModel.Parameter"
+                    xmlns:accountviewmodel="clr-namespace:ProjectFinal.ViewModel.Account"
+                    xmlns:categoryviewmodel ="clr-namespace:ProjectFinal.ViewModel.Category"
+                    xmlns:customerviewmodel="clr-namespace:ProjectFinal.ViewModel.Customer"
+                    xmlns:promotionviewmodel="clr-namespace:ProjectFinal.ViewModel.Promotion"
+                    xmlns:orderview="clr-namespace:ProjectFinal.View.Order"
+                    xmlns:productview="clr-namespace:ProjectFinal.View.Product"
+                    xmlns:homeview ="clr-namespace:ProjectFinal.View.Home"
+                    >
+
+    <DataTemplate DataType="{x:Type homeviewmodel:HomeViewModel}">
+        <homeview:HomeUC/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type orderviewmodel:OrderViewModel}">
+        <orderview:OrderUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type orderviewmodel:OrderAddOrUpdateViewModel}">
+        <orderview:OrderAddOrUpdate/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type orderviewmodel:DialogStatusOrderViewModel}">
+        <orderview:DialogStatusOrder/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type orderviewmodel:OrderDetailViewModel}">
+        <orderview:OrderDetailUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type orderviewmodel:AddProductOrderDetailViewModel}">
+        <orderview:AddProductOrderDetail/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type promotionviewmodel:PromotionViewModel}">
+        <promotionview:PromotionUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type promotionviewmodel:PromotionAddorUpdateViewModel}">
+        <promotionview:PromotionAddorUpdate/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type customerviewmodel:CustomerViewModel}">
+        <customerview:CustomerUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type customerviewmodel:CustomerAddorUpdateViewModel}">
+        <customerview:CustomerAddorUpdate/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type categoryviewmodel:CategoryViewModel}">
+        <categoryview:CategoryUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type categoryviewmodel:CategoryAddorUpdateViewModel}">
+        <categoryview:CategoryAddorUpdate/>
+    </DataTemplate>
+
+
+    <DataTemplate DataType="{x:Type accountviewmodel:AccountViewModel}">
+        <accountview:AccountUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type accountviewmodel:AccountAddorUpdateViewModel}">
+        <accountview:AccountAddorUpdate/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type accountviewmodel:ChangePasswordViewModel}">
+        <accountview:ChangePasswordUC/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type statisticviewmodel:StatisticViewModel}">
+        <statisticview:StatisticUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type statisticviewmodel:StatisticMainViewModel}">
+        <statisticview:StatisticMainUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type statisticviewmodel:ReportDayViewModel}">
+        <statisticview:StatisticUC/>
+    </DataTemplate>
+
+
+
+
+
+    <DataTemplate DataType="{x:Type productviewmodel:ProductViewModel}">
+        <productview:ProductUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type productviewmodel:ProductAddOrUpdateViewModel}">
+        <productview:ProductAddorUpdate/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodels:ConfirmDeleteItemViewModel}">
+        <dialogview:DialogConfirmDeleteItemUC/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type parameterviewmodel:ParameterViewModel}">
+        <parameterview:ParameterUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type parameterviewmodel:ParameterColorViewModel}">
+        <parameterview:ParameterColorUC/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type parameterviewmodel:ParameterSizeViewModel}">
+        <parameterview:ParameterSizeUC/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type settingviewmodel:SettingViewModel}">
+        <settingview:SettingUC/>
+    </DataTemplate>
+
+
+
+    <viewmodels:LoginViewModel x:Key="LoginViewModel"/>
+    <viewmodels:MainViewModel x:Key="MainViewModel"/>
+</ResourceDictionary>
